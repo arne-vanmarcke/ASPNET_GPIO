@@ -1,4 +1,10 @@
 ﻿@page
 @model MyApp.Namespace.GpioModel
 @{
+    ViewData["Title"]="Gpio";
 }
+
+<form method="post">
+    <input asp-for="Output18"/>
+    <button>Click</button>
+</form>

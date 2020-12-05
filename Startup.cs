@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using System.Device.Gpio;
+
 namespace aspnetcoreapp_oefening
 {
     public class Startup
@@ -24,6 +26,13 @@ namespace aspnetcoreapp_oefening
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddSingleton<GpioController>(s =>
+            {
+                var controller=new GpioController();
+                controller.OpenPin(18,PinMode.Output);
+                return controller;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
