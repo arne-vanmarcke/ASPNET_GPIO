@@ -31,6 +31,12 @@ namespace aspnetcoreapp_oefening
             {
                 var controller=new GpioController();
                 controller.OpenPin(18,PinMode.Output);
+                controller.OpenPin(23,PinMode.Output);
+                controller.OpenPin(24,PinMode.Output);
+
+                controller.OpenPin(17,PinMode.Input);
+                controller.OpenPin(27,PinMode.Input);
+                controller.OpenPin(22,PinMode.Input);
                 return controller;
             });
         }
