@@ -23,12 +23,28 @@ namespace MyApp.Namespace
         }
 
         [BindProperty]
-        public bool Output18 { get; set; }
+        public bool Gpio18 { get; set; }
+        [BindProperty]
+        public bool Gpio23 { get; set; }
+        [BindProperty]
+        public bool Gpio24 { get; set; }
+
+        public PinValue Gpio17 { get; set; }
+        public PinValue Gpio27 { get; set; }
+        public PinValue Gpio22 { get; set; }
 
         public void OnPost()
         {
-            controller.Write(18, Output18? PinValue.High : PinValue.Low);
-            Console.WriteLine($"Output18 is: {Output18}");
+            controller.Write(18, Gpio18? PinValue.High : PinValue.Low);
+            controller.Write(23, Gpio23? PinValue.High : PinValue.Low);
+            controller.Write(24, Gpio24? PinValue.High : PinValue.Low);
+
+            Gpio17=controller.Read(17);
+            Gpio27=controller.Read(27);
+            Gpio22=controller.Read(22);
+            Console.WriteLine($"Gpio18 is: {Gpio18}");
+            Console.WriteLine($"Gpio23 is: {Gpio23}");
+            Console.WriteLine($"Gpio24 is: {Gpio24}");
         }
     }
 }
