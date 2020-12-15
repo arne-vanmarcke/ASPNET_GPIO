@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using aspnetcoreapp_oefening.Hubs;
 using System.Device.Gpio;
 
 namespace aspnetcoreapp_oefening
@@ -25,7 +26,10 @@ namespace aspnetcoreapp_oefening
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             services.AddRazorPages();
+            services.AddHostedService<Worker>();
+
 
             services.AddSingleton<GpioController>(s =>
             {
@@ -34,9 +38,9 @@ namespace aspnetcoreapp_oefening
                 controller.OpenPin(23,PinMode.Output);
                 controller.OpenPin(24,PinMode.Output);
 
-                controller.OpenPin(17,PinMode.Input);
-                controller.OpenPin(27,PinMode.Input);
-                controller.OpenPin(22,PinMode.Input);
+                controller.OpenPin(17,PinMode.InputPullUp);
+                controller.OpenPin(27,PinMode.InputPullUp);
+                controller.OpenPin(22,PinMode.InputPullUp);
                 return controller;
             });
         }
@@ -64,6 +68,7 @@ namespace aspnetcoreapp_oefening
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ChatHub>("/chathub");
                 endpoints.MapRazorPages();
             });
         }

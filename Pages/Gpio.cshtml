@@ -4,7 +4,7 @@
     ViewData["Title"]="Gpio";
 }
 
-<form method="post">
+@* <form method="post">
     <input asp-for="Gpio18"/>
     <input asp-for="Gpio23"/>
     <input asp-for="Gpio24"/>
@@ -12,4 +12,70 @@
     <p>@Model.Gpio27</p>
     <p>@Model.Gpio22</p>
     <button>Click</button>
-</form>
+</form> *@
+<head>
+    <link rel="stylesheet" href="~/css/gpio.css" />
+</head>
+<div class="container">
+    @* <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-2">User</div>
+            <div class="col-4"><input type="text" id="userInput" /></div>
+        </div>
+        <div class="row">
+            <div class="col-2">Message</div>
+            <div class="col-4"><input type="text" id="messageInput" /></div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+    </div> *@
+    <div class="row">
+        @* <div class="col-6">
+            <label id="GPIO17"></label>
+            <label id="GPIO22"></label>
+            <label id="GPIO27"></label>
+        </div> *@
+    </div>
+    <nav id="pinoutBase">
+        <ul id="leftPinout">
+            <span>Inputs:</span>
+            <li>
+                <label id="GPIO17">GPIO 17: ???</label>
+            </li>
+            <li>
+                <label id="GPIO22">GPIO 22: ???</label>
+            </li>
+            <li>
+                <label id="GPIO27">GPIO 27: ???</label>
+            </li>
+        </ul>
+        <ul id="rightPinout">
+            <span>Outputs:</span>
+            <li>
+                <div id="GPIO18">GPIO 18<input type="checkbox" id="GPIO18_chbx"/></div>
+            </li>
+            <li>
+                <div id="GPIO23">GPIO 23<input type="checkbox" id="GPIO23_chbx"/></div>
+            </li>
+            <li>
+                <div id="GPIO24">GPIO 24<input type="checkbox" id="GPIO24_chbx"/></div>
+            </li>
+        </ul>
+    </nav>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
