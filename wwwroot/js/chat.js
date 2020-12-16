@@ -28,34 +28,37 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 document.getElementById("GPIO18_chbx").addEventListener("change", function (event) {
-    var user = 18;
+    var user = document.getElementById("GPIO18_chbx").id;
     var message = document.getElementById("GPIO18_chbx").checked==true ? 'High':'Low';
     connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());
     });
-    connection.invoke("setPin",parseInt(user),(document.getElementById("GPIO18_chbx").checked)).catch(function (err) {
+    user=user.replace('GPIO','');
+    connection.invoke("setPin",parseInt(user.replace('_chbx','').trim()),(document.getElementById("GPIO18_chbx").checked)).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
 });
 document.getElementById("GPIO23_chbx").addEventListener("change", function (event) {
-    var user = 23;
+    var user = document.getElementById("GPIO23_chbx").id;
     var message = document.getElementById("GPIO23_chbx").checked==true ? 'High':'Low';
     connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());
     });
-    connection.invoke("setPin",parseInt(user),(document.getElementById("GPIO23_chbx").checked)).catch(function (err) {
+    user=user.replace('GPIO','');
+    connection.invoke("setPin",parseInt(user.replace('_chbx','').trim()),(document.getElementById("GPIO23_chbx").checked)).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
 });
 document.getElementById("GPIO24_chbx").addEventListener("change", function (event) {
-    var user = 24;
+    var user = document.getElementById("GPIO24_chbx").id;
     var message = document.getElementById("GPIO24_chbx").checked==true ? 'High':'Low';
     connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());
     });
-    connection.invoke("setPin",parseInt(user),(document.getElementById("GPIO24_chbx").checked)).catch(function (err) {
+    user=user.replace('GPIO','');
+    connection.invoke("setPin",parseInt(user.replace('_chbx','').trim()),(document.getElementById("GPIO24_chbx").checked)).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
